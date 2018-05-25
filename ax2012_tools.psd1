@@ -12,7 +12,7 @@
     RootModule             = 'ax2012_tools.psm1'
     
     # Version number of this module.
-    ModuleVersion          = '0.5.1'
+    ModuleVersion          = '0.5.2'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -118,7 +118,7 @@
             LicenseUri   = "https://opensource.org/licenses/MIT"
     
             # A URL to the main website for this project.
-            # ProjectUri = ''
+             ProjectUri = 'https://github.com/d365collaborative/ax2012_tools'
     
             # A URL to an icon representing this module.
             # IconUri = ''

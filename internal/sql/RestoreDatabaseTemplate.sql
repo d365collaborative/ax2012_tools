@@ -286,3 +286,5 @@ IF OBJECT_ID('tempdb..#tempInstanceNames') IS NOT NULL
 
 IF OBJECT_ID('tempdb..#HeaderOnlyTable') IS NOT NULL
 	DROP TABLE #HeaderOnlyTable
+
+GO
