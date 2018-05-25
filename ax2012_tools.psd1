@@ -117,7 +117,7 @@
         PSData = @{
     
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags         = @('Dynamics Ax', 'Dynamics Ax 2012', 'Ax 2012', 'DAX 2012', 'AX')
+            Tags         = @('DynamicsAx','DynamicsAx2012','Ax2012','DAX2012','AX')
     
             # A URL to the license for this module.
             LicenseUri   = "https://opensource.org/licenses/MIT"
