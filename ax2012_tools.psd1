@@ -12,7 +12,7 @@
     RootModule             = 'ax2012_tools.psm1'
     
     # Version number of this module.
-    ModuleVersion          = '0.5.0'
+    ModuleVersion          = '0.5.1'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -85,11 +85,6 @@
         , 'Get-AxAosInstance'
         , 'Import-AxModels'
         , 'Start-DataRefresh'
-    
-        , 'Get-AxAosService' #! Should not be part of the real release
-        , 'Stop-AxAosService' #! Should not be part of the real release
-        , 'Start-AxAosService' #! Should not be part of the real release
-        , 'Initialize-SQLScript' #! Should not be part of the real release
     )
     
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
