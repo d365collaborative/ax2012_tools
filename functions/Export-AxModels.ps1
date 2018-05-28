@@ -1,21 +1,41 @@
 <#
 .SYNOPSIS
-Short description
+Export AX 2012 models from the AX 2012 modelstore.
 
 .DESCRIPTION
-Long description
+Export AX 2012 models from the AX 2012 modelstore database.
 
+Utilizes the standard Microsoft Dynamics AX 2012 Powershell module to export all models from the modelstore database.
 .PARAMETER DatabaseServer
-Parameter description
+The DNS or FullyQualifiedDomainName of the server running the SQL Server Database Engine. 
 
+If the SQL Server runs with at named instance you have to supply that as part of the name.
 .PARAMETER ModelstoreDatabase
-Parameter description
+The name of the database that contains the modelstore desired to export AX 2012 models from.
+
+Please note that AX 2012 RTM & AX 2012 Feature Pack stores the modelstore inside the business database.
+
+Please note that AX 2012 R2 & AX 2012 R3 stores the modelstore in a separate database.
 
 .PARAMETER Path
-Parameter description
+The path where to store the all the AX 2012 models.
+
+The cmdlet will append current date to the path, to ensure that it doesn't overwrite older exports
 
 .EXAMPLE
-An example
+Export-AxModels -DatabaseServer "SQL2012" -ModelstoreDatabase "AX2012R3_TEST_model"
+
+Exports the AX 2012 models from the AX2012R3_TEST_model database located on server named SQL2012 and storing the files on the default path
+
+.EXAMPLE
+Export-AxModels -DatabaseServer "SQL2012" -ModelstoreDatabase "AX2012R3_TEST_model" -Path "C:\AX2012_Repo"
+
+Exports the AX 2012 models from the AX2012R3_TEST_model database located on server named SQL2012 and storing the files in "C:\AX2012_Repo"
+
+.EXAMPLE
+Export-AxModels -DatabaseServer "SQL2012\TEST" -ModelstoreDatabase "AX2012R3_TEST_model"
+
+Exports the AX 2012 models from the AX2012R3_TEST_model database located on server named SQL2012 with the TEST SQL instance and storing the files on the default path
 
 .NOTES
 General notes
@@ -23,9 +43,9 @@ General notes
 Function Export-AxModels {
     [CmdletBinding()]
     Param(
-        [Parameter(ValueFromPipelineByPropertyName)]
+        [Parameter(ValueFromPipelineByPropertyName, Mandatory = $true, ValueFromPipeline=$true)]
         $DatabaseServer,
-        [Parameter(ValueFromPipelineByPropertyName)]
+        [Parameter(ValueFromPipelineByPropertyName, Mandatory = $true, ValueFromPipeline=$true)]
         $ModelstoreDatabase,
         [Parameter()]
         [AllowEmptyString()]
@@ -44,7 +64,7 @@ Function Export-AxModels {
         }
 
         if ([System.String]::IsNullOrEmpty($Path)) {
-            $Path = "c:\Temp\AXModels\";
+            $Path = "c:\Temp";
         }
         
         #* Make sure that the path exists or ask to create it
@@ -62,7 +82,7 @@ Function Export-AxModels {
             }
         }
 
-        import-module "C:\Program Files\Microsoft Dynamics AX\60\ManagementUtilities\Microsoft.Dynamics.ManagementUtilities.ps1"
+        $null = import-module "C:\Program Files\Microsoft Dynamics AX\60\ManagementUtilities\Microsoft.Dynamics.ManagementUtilities.ps1"
 
         Write-Verbose "End the BEGIN section of $($MyInvocation.MyCommand.Name)"
     }
@@ -121,7 +141,7 @@ Function Export-AxModels {
                         
                 Write-Verbose "Exporting $elementCount elements from $ModelName...";
 
-                Invoke-AxModelExport -Model $ModelName -Path $FilenameAxModel -DatabaseServer $DatabaseServer -ModelstoreDatabase $ModelstoreDatabase
+                Invoke-ExportAxModel -Model $ModelName -Path $FilenameAxModel -DatabaseServer $DatabaseServer -ModelstoreDatabase $ModelstoreDatabase
             }
             else {
                 Write-Verbose "Skipping $FilenameAxModel in layer $layer";

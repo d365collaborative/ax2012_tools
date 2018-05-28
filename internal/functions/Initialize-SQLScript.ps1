@@ -9,7 +9,7 @@ Function Initialize-SQLScript {
     #     DATESTRING = '20180524'
     # }
 
-    $str = Get-Content -Path ".\Ax2012_Tools\internal\sql\$($Inputs.File).sql"
+    $str = Get-Content -Path "$script:PSModuleRoot\internal\sql\$($Inputs.File).sql"
     
     $Inputs.Keys | ForEach-Object {
         $str = $str.Replace("#$_#", "$($Inputs[$_])")

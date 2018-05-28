@@ -1,19 +1,27 @@
-#Get-AxAosInstance -Filter {$_.InstanceName -eq "AX2012R3_TEST"}
 <#
 .SYNOPSIS
-Short description
+Gets the Dynamics AX 2012 instances installed on the computer
 
 .DESCRIPTION
-Long description
+Gets the Dynamics AX 2012 instances installed on the computer. 
+
+It reads the registry where all installed AX 2012 AOS instance details are stored.
 
 .PARAMETER Filter
-Parameter description
+An advanced filter to select the desired instances - '{$_.PROPERTY -eq VALUE}'
 
 .EXAMPLE
-An example
+Get-AxAosInstance
+
+Get all installed AX 2012 AOS instances.
+
+.EXAMPLE
+Get-AxAosInstance -filter {$_.InstanceName -eq "AX2012R3_TEST"}
+
+Gets the AX 2012 AOS instance with the AX2012_TEST as the instance name. This value can be found using the "Microsoft Dynamics AX 2012 Server Configuration"
 
 .NOTES
-General notes
+The cmdlet supports pipe to other cmdlets. 
 #>
 function Get-AxAosInstance {
     [CmdletBinding()]
@@ -46,5 +54,3 @@ function Get-AxAosInstance {
     
     END {}
 }
-    
-#$InstallInstances

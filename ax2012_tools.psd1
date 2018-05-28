@@ -12,7 +12,7 @@
     RootModule             = 'ax2012_tools.psm1'
     
     # Version number of this module.
-    ModuleVersion          = '0.5.2'
+    ModuleVersion          = '0.5.8'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -74,6 +74,7 @@
         , '.\functions\Get-AxAosInstance.ps1'
         , '.\functions\Import-AxModels.ps1'
         , '.\functions\Start-DataRefresh.ps1'
+        , '.\functions\Invoke-ExportAxModelstore.ps1'
     
     )
     
@@ -84,6 +85,7 @@
         , 'Export-AxModels'
         , 'Get-AxAosInstance'
         , 'Import-AxModels'
+        , 'Invoke-ExportAxModelstore'
         , 'Start-DataRefresh'
     )
     

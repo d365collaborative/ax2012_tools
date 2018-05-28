@@ -1,4 +1,4 @@
-Function Invoke-AxModelExport {
+Function Invoke-ExportAxModel {
     [CmdletBinding()]
     param (
         [string] $Model, 
@@ -10,7 +10,7 @@ Function Invoke-AxModelExport {
         BEGIN {
             Write-Verbose "Starting the BEGIN section of $($MyInvocation.MyCommand.Name)"
          
-            Import-Module "C:\Program Files\Microsoft Dynamics AX\60\ManagementUtilities\Microsoft.Dynamics.ManagementUtilities.ps1"
+            $null = Import-Module "C:\Program Files\Microsoft Dynamics AX\60\ManagementUtilities\Microsoft.Dynamics.ManagementUtilities.ps1"
 
             Write-Verbose "End the BEGIN section of $($MyInvocation.MyCommand.Name)"
         }
